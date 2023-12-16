@@ -1,0 +1,33 @@
+class Solution {
+    boolean isSame(String s){
+        for(int i=1;i<s.length();i++){
+            if(s.charAt(i) != s.charAt(0)){
+                return false;
+            }
+        }
+        return true;
+    }
+    public String largestGoodInteger(String num) {
+        String ans = "";
+        for(int i=0;i<num.length();i++){
+            String temp = "";
+            for(int j=i;j<num.length();j++){
+                temp += num.charAt(j);
+                if(temp.length() == 3 && isSame(temp)){
+                    if(ans.length() == 0){
+                        // initially string khali hai
+                        ans = temp;
+                    }else{
+                        // mtlb compare krna padega
+                        int a = Integer.parseInt(String.valueOf(ans.charAt(0)));
+                        int b = Integer.parseInt(String.valueOf(temp.charAt(0)));
+                        if(b>a){
+                            ans = temp;
+                        }
+                    }
+                }
+            }
+        }
+        return ans;        
+    }
+}
